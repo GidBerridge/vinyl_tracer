@@ -28,7 +28,9 @@
 
     <div class="flex-item">
       <div class="card-seller">
-        <img src= <%= seller.seller_logo %> >
+        <div class="d-flex align-items-center" style="height:175px;">
+          <img src= <%= seller.seller_logo %> class="cs-image">
+        </div>
         <div class="seller-infos">
           <ul style="list-style: none; margin: 0; padding: 0;">
             <li><h2><%= link_to seller.seller_name, seller.seller_url, target: :blank %></h2></li>
