@@ -22,14 +22,14 @@
 }
 
 #title {
-  max-width: 40%;
-  min-width: 20rem;
+  // max-width: 40%;
+  // min-width: 20rem;
 }
 
-@media screen and (min-width: 680px) {
-  .home-wrapper {
-    & > div:first-child {
-      margin-right: 64px;
-    }
-  }
-}
+// @media screen and (min-width: 680px) {
+//   .home-wrapper {
+//     & > div:first-child {
+//       margin-right: 64px;
+//     }
+//   }
+// }
