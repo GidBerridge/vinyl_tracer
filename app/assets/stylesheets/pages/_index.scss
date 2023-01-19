@@ -17,6 +17,11 @@ body{
   animation: ripple 45s infinite;
   box-shadow: 0px 0px 1px 0px #583D72;
   z-index: -1;
+  display: none;
+
+  @media screen and (min-width: 850px) {
+    display: block;
+  }
 }
 
 .small{
@@ -87,5 +92,7 @@ body{
     transform: scale(0.8);
   }
 }
+
+
 
 
