@@ -35,15 +35,12 @@
           <ul style="list-style: none; margin: 0; padding: 0;">
             <li><h2><%= link_to seller.seller_name, seller.seller_url, target: :blank %></h2></li>
             <li><p><%= seller.location %></p></li>
-
             <li><%= link_to seller.seller_url, target: :blank do %>
                 <i class="fas fa-store" id="seller"></i>
               <% end %>
             </li>
-
           </ul>
         </div>
-
       </div>
     </div>
 
@@ -55,7 +52,7 @@
 <div id="map"
     style="width: 80%; height: 600px; margin: 0 auto;"
     data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 <br>
 <div class="d-flex justify-content-center"><%= link_to 'back to album search', albums_path, class: "btn btn-basic mb-5" %></div>
