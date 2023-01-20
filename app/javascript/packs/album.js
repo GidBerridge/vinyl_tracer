@@ -44,7 +44,6 @@ const album = () => {
         const longText = '....... \n\n...see wikipedia for more details.'
         if (text.length >= 600) {
           const trimmedText = text.replace(/^(.{520}[^\s]*).*/, '$1')
-          console.log(trimmedText)
           album_trivia.innerText = trimmedText + longText
         } else album_trivia.innerText = text
       }

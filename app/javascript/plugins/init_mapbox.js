@@ -1,12 +1,11 @@
 import mapboxgl from '!mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
 const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey
   return new mapboxgl.Map({
     container: 'map',
-    // style: 'mapbox://styles/liztobin/cktkgfk0k611517mo8lcoe7ep',
     style: 'mapbox://styles/gidb/cld1jpjcy000t01nyrei4tzy7',
   })
 }

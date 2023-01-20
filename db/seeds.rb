@@ -863,7 +863,7 @@ Artist.create!(
 Album.create!(
   album_name: "Unknown Pleasures",
   year: '1979',
-  artwork_url: 'https://upload.wikimedia.org/wikipedia/en/7/70/Unknown_Pleasures_Joy_Division_LP_sleeve.jpg',
+  artwork_url: 'https://vinyltracer.s3.amazonaws.com/album_covers/joy_division.jpg',
   producers: ["Martin Hannett"],
   record_label: 'Factory',
   seller_id: Seller.all.sample.id,
@@ -881,7 +881,7 @@ Artist.create!(
 Album.create!(
   album_name: "Power, Corruption and Lies",
   year: '1983',
-  artwork_url: 'https://upload.wikimedia.org/wikipedia/en/4/4f/New_Order_-_Power%2C_Corruption_%26_Lies.png',
+  artwork_url: 'https://vinyltracer.s3.amazonaws.com/album_covers/new_order.jpg',
   producers: ["New Order"],
   record_label: 'Factory',
   seller_id: Seller.all.sample.id,
@@ -918,7 +918,7 @@ Artist.create!(
 Album.create!(
   album_name: "Actually",
   year: '1987',
-  artwork_url: 'https://upload.wikimedia.org/wikipedia/en/f/fc/PetShopBoysActually.jpg',
+  artwork_url: 'https://vinyltracer.s3.amazonaws.com/album_covers/pet_shop_boys.jpg',
   producers: ["Stephen Hague", "David Jacob", "Julian Mendelsohn", "Pet Shop Boys", "Shep Pettibone", "Andy Richards"],
   record_label: 'Parlophone',
   seller_id: Seller.all.sample.id,

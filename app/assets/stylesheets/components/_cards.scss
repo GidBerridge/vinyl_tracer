@@ -23,7 +23,6 @@
 
 .card-vinyl > img,
 .card-six-degrees > img {
-  // height: 350px;
   width: 100%;
   object-fit: cover;
 }
@@ -97,11 +96,6 @@
   text-align: center;
 }
 
-// .card-vinyl {
-//   width: 22rem;
-//   height: 540px;
-// }
-
 .card-vinyl-infos {
   padding: 8px 0;
 }
@@ -131,7 +125,7 @@
 
 .card-album-tracks {
   margin-top: 20px 0px;
-  max-width: 38rem;
+  max-width: 21rem;
   padding: 20px 20px 0 20px;
 }
 
