@@ -8,13 +8,13 @@ ENV SECRET_KEY_BASE 1
 # Install required libraries on Alpine
 # note: build-base required for nokogiri gem
 # note: postgresql-dv required for pg gem
-RUN apk add tzdata postgresql-dev && \
+RUN apk update && apk upgrade && \
+    apk add tzdata postgresql-dev && \
     apk add postgresql-client && \
     apk add nodejs yarn && \
     apk add build-base
 
-# Copy all application files
-COPY . .
+
 
 # Throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
@@ -23,13 +23,14 @@ RUN bundle config --global frozen 1
 COPY Gemfile Gemfile.lock ./
 RUN gem install rails bundler
 # Fix issue with sassc gem
-RUN bundle config --local build.sassc --disable-march-tune-native
+# RUN bundle config --local build.sassc --disable-march-tune-native
 
 # Install Ruby gems
 RUN bundle install --without development test
 # RUN yarn install
 
-
+# Copy all application files
+COPY . .
 
 # Precompile assets
 RUN bundle exec rails assets:precompile
@@ -39,23 +40,6 @@ RUN bundle exec rails webpacker:compile
 RUN chmod +x entrypoint.sh
 CMD ["/entrypoint.sh"]
 
-
-
-# throw errors if Gemfile has been modified since Gemfile.lock
-# RUN bundle config --global frozen 1
-
-# WORKDIR /usr/src/app
-
-# COPY Gemfile Gemfile.lock ./
-
-# ENV BUNDLE_VERSION 2.2.16
-# # ENV PG_VERSION 1.2.3
-# RUN gem install bundler --version "$BUNDLE_VERSION"
-# # RUN gem install pg --version "$PG_VERSION"
-
-# RUN bundle install
-
-# COPY . .
 
 EXPOSE 3000
 
