@@ -1,9 +1,12 @@
-FROM ruby:2.7.7-alpine3.16
+FROM ruby:2.7.7-alpine3.16 AS builder
 
 ENV RAILS_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
 ENV SECRET_KEY_BASE 1
+
+RUN mkdir /app
+WORKDIR /app
 
 # Install required libraries on Alpine
 # note: build-base required for nokogiri gem
@@ -13,8 +16,6 @@ RUN apk update && apk upgrade && \
     apk add postgresql-client && \
     apk add nodejs yarn && \
     apk add build-base
-
-
 
 # Throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
