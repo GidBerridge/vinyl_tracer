@@ -1,8 +1,12 @@
-FROM ruby:2.7.7-alpine3.16
+FROM ruby:2.7.7-alpine3.16 AS builder
 
 ENV RAILS_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
+ENV SECRET_KEY_BASE 1
+
+RUN mkdir /app
+WORKDIR /app
 
 # Install required libraries on Alpine
 # note: build-base required for nokogiri gem
@@ -13,9 +17,6 @@ RUN apk update && apk upgrade && \
     apk add nodejs yarn && \
     apk add build-base
 
-# Copy all application files
-COPY . .
-
 # Throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
 
@@ -23,38 +24,23 @@ RUN bundle config --global frozen 1
 COPY Gemfile Gemfile.lock ./
 RUN gem install rails bundler
 # Fix issue with sassc gem
-RUN bundle config --local build.sassc --disable-march-tune-native
+# RUN bundle config --local build.sassc --disable-march-tune-native
 
 # Install Ruby gems
 RUN bundle install --without development test
 # RUN yarn install
 
-
+# Copy all application files
+COPY . .
 
 # Precompile assets
-# RUN SECRET_KEY_BASE=`bundle exec rails secret` bundle exec rails assets:precompile
+RUN bundle exec rails assets:precompile
+RUN bundle exec rails webpacker:compile
 
 # Run entrypoint.sh script
 RUN chmod +x entrypoint.sh
 CMD ["/entrypoint.sh"]
 
-
-
-# throw errors if Gemfile has been modified since Gemfile.lock
-# RUN bundle config --global frozen 1
-
-# WORKDIR /usr/src/app
-
-# COPY Gemfile Gemfile.lock ./
-
-# ENV BUNDLE_VERSION 2.2.16
-# # ENV PG_VERSION 1.2.3
-# RUN gem install bundler --version "$BUNDLE_VERSION"
-# # RUN gem install pg --version "$PG_VERSION"
-
-# RUN bundle install
-
-# COPY . .
 
 EXPOSE 3000
 

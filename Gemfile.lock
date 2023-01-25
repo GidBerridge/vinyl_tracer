@@ -120,9 +120,6 @@ GEM
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jquery (0.0.1)
-    jquery-turbolinks (2.1.0)
-      railties (>= 3.1.0)
-      turbolinks
     listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -291,7 +288,6 @@ DEPENDENCIES
   geocoder
   jbuilder
   jquery
-  jquery-turbolinks
   listen (~> 3.3)
   nokogiri
   pg (~> 1.2.3)
