@@ -3,12 +3,12 @@ FROM ruby:2.7.7-alpine3.16
 ENV RAILS_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
+ENV SECRET_KEY_BASE 1
 
 # Install required libraries on Alpine
 # note: build-base required for nokogiri gem
 # note: postgresql-dv required for pg gem
-RUN apk update && apk upgrade && \
-    apk add tzdata postgresql-dev && \
+RUN apk add tzdata postgresql-dev && \
     apk add postgresql-client && \
     apk add nodejs yarn && \
     apk add build-base
@@ -32,7 +32,8 @@ RUN bundle install --without development test
 
 
 # Precompile assets
-# RUN SECRET_KEY_BASE=`bundle exec rails secret` bundle exec rails assets:precompile
+RUN bundle exec rails assets:precompile
+RUN bundle exec rails webpacker:compile
 
 # Run entrypoint.sh script
 RUN chmod +x entrypoint.sh
